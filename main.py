@@ -1,11 +1,13 @@
 """
 Delete comments for a given reddit account.
 """
-import praw
-
+import os
 from typing import Any
 import requests
 import time
+
+import praw
+
 
 
 def get_comment_ids(me: Any):
@@ -29,11 +31,11 @@ def delete_comments(comment_ids):
 
 if __name__ == "__main__":
     # Initialize the Reddit instance
-    reddit = praw.Reddit(client_id=os.env['client_id'],
-                         client_secret=os.env['client_secret'],
-                         password=os.env['password'],
-                         user_agent=os.env['user_agent'],
-                         username=os.env['username'])
+    reddit = praw.Reddit(client_id=os.environ['client_id'],
+                         client_secret=os.environ['client_secret'],
+                         password=os.environ['password'],
+                         user_agent=os.environ['user_agent'],
+                         username=os.environ['username'])
     me = reddit.user.me()
     # Get comment ids
     comment_ids = get_comment_ids(me)
